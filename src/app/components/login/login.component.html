@@ -1,0 +1,26 @@
+
+<div class="col-md-12 mt-3">
+<h1>identificate</h1>
+<div *ngIf="alert">
+  <div class="alert alert-info" role="alert">
+    {{alert}}
+  </div>
+</div>
+
+<form #loginForm="ngForm" (ngSubmit)="onSubmit()" class="col-md-5 ml-0 pl-0  ">
+  <p>
+    <label class="font-weight-bold">Correo electrónico:</label>
+    <input type="email" class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email" required>
+    <span *ngIf="!email.valid && email.touched">El email es obligatorio</span>
+
+  </p>
+  <p>
+    <label class="font-weight-bold">Contraseña:</label>
+    <!--[(ngModel)]="user.password" es para enlazar los datos con el objeto que se tiene instaciado en ts -->
+    <input type="password" #password="ngModel" name="password" [(ngModel)]="user.password" class="form-control"
+      autocomplete="off" required>
+  </p>
+  <input type="submit" value="Entrar" class="btn btn-primary" >
+
+</form>
+</div>

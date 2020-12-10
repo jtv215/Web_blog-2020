@@ -1,0 +1,42 @@
+<div class="col-md-12 mt-3">
+  <h1>{{title}}</h1>
+  <p>Registrate en nuestra aplicación</p>
+  <div *ngIf="alert">
+    <div class="alert alert-info" role="alert">
+      {{alert}}
+    </div>
+  </div>
+  <form #registerform="ngForm" (submit)="onSubmit(registerform)" class="col-md-5 ml-0 pl-0 ">
+    <p>
+      <label class="font-weight-bold">Nombre:</label>
+      <input type="text" #name="ngModel" name="name" [(ngModel)]="user.name" class="form-control" required>
+      <span class="invalid-feedback d-block" *ngIf="!name.valid && name.touched">El nombre es obligatorio</span>
+
+    </p>
+    <p>
+      <label class="font-weight-bold"> Apellidos:</label>
+      <input type="text" #surname="ngModel" name="surname" [(ngModel)]="user.surname" class="form-control" required>
+      <span class="invalid-feedback d-block" *ngIf="!surname.valid && surname.touched">Los apellidos son
+        obligatorios</span>
+    </p>
+
+    <p>
+      <label class="font-weight-bold">Correo electrónico:</label>
+      <input type="text" class="form-control" #email="ngModel" name="email" [(ngModel)]="user.email"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+      <span class="invalid-feedback d-block" *ngIf="!email.valid && email.touched">El email es obligatorio</span>
+
+    </p>
+    <p>
+      <label class="font-weight-bold">Contraseña:</label>
+      <input type="password" class="form-control" #password="ngModel" name="password" [(ngModel)]="user.password"
+        required>
+      <span class="invalid-feedback d-block" *ngIf="!password.valid && password.touched">La contraseña es
+        obligatoria</span>
+
+    </p>
+    <input type="submit" value="Registrarse" class="btn btn-primary" [disabled]="registerform.invalid">
+
+  </form>
+
+</div>
